@@ -57,10 +57,6 @@ public class EasyAIPlayer implements Player {
         return name;
     }
 
-    public void displayGrids() { // temporary method to show the customer the printing of a grid
-        // doesn't do anything
-    }
-
     public void reset() {
         this.oceanGrid = new OceanGrid();
         this.availableShots = getAvailableShots();

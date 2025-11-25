@@ -1,7 +1,11 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Grid {
     protected Cell[][] cells = new Cell[10][10];
+    private List<GridListener> listeners = new ArrayList<GridListener>();
 
     public Grid(){
         for (int i = 0; i < 10; i++){
@@ -13,6 +17,17 @@ public abstract class Grid {
 
     protected Cell cellAtLocation(Coordinate location){
         return cells[location.getRow()][location.getColumn()];
+    }
+
+    public void addListener(GridListener listener){
+        listeners.add(listener);
+    }
+
+    protected void notifyListeners(){
+        for(GridListener listener : listeners){
+            GridRep gridRep = new GridRep(this);
+            listener.gridChanged(gridRep);
+        }
     }
 
     public void print(){

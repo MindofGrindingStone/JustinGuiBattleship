@@ -25,6 +25,7 @@ public class TargetGrid extends Grid implements ShotDelegate {
                 // this should never happen
                 break;
         }
+        notifyListeners();
     }
 
     public boolean isValidShot(Coordinate location){
@@ -38,4 +39,5 @@ public class TargetGrid extends Grid implements ShotDelegate {
     public void handleShot(Coordinate shot, Object sender) {
         shotDelegate.handleShot(shot, this);
     }
+
 }
