@@ -12,6 +12,7 @@ public class Constants {
         public final static int FOOTER_AREA_HEIGHT = 35;
         public final static int WINDOW_WIDTH = GRID_SIZE;
         public final static int WINDOW_HEIGHT = 2 * GRID_SIZE + STATUS_AREA_HEIGHT + 2 * FOOTER_AREA_HEIGHT;
+        public final static int PEG_DIAMETER = 10;
     }
     
 	private Constants(){}

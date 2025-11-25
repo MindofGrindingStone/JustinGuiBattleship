@@ -1,11 +1,9 @@
 package View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,7 +31,6 @@ public class GameWindow extends BetterWindow {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         // stack in target grid
-        targetPanel.setBackground(Color.LIGHT_GRAY);
         centerPanel.add(targetPanel);
 
         // stack in status area
