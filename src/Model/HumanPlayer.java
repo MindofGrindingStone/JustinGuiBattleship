@@ -21,6 +21,10 @@ public class HumanPlayer implements Player, ShotDelegate {
         return targetGrid;
     }
 
+    public OceanGrid getOceanGrid() {
+        return oceanGrid;
+    }
+
     @Override
     public String getName() {
         return name;

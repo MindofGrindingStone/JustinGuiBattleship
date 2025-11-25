@@ -18,6 +18,7 @@ public class OceanGrid extends Grid {
             cell.setState(CellState.MISS);
             ShotResult result = ShotResult.MISS;
             result.setLocation(location);
+            notifyListeners();
             return result;
         }
 
@@ -30,10 +31,12 @@ public class OceanGrid extends Grid {
                 result.setLength(cell.getShip().getLength());
                 result.setLocation(location);
                 result.setShipName(cell.getShip().getName());
+                notifyListeners();
                 return result;
             } else {
                 ShotResult result = ShotResult.HIT;
                 result.setLocation(location);
+                notifyListeners();
                 return result;
             }
         }

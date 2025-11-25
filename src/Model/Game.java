@@ -37,6 +37,10 @@ public class Game implements ShotDelegate {
         return humanPlayer.getTargetGrid();
     }
 
+    public OceanGrid getHumanOceanGrid() {
+        return humanPlayer.getOceanGrid();
+    }
+
     @SuppressWarnings("incomplete-switch")
     public void handleShot(Coordinate shot, Object sender){
         // must be this player's turn
