@@ -51,6 +51,7 @@ public class OceanGrid extends Grid {
                 cellAtLocation(location).setShip(ship);
             }
         } 
+        notifyListeners();
     }
 
     public boolean shipsAreSunk(){

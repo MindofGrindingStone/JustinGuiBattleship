@@ -17,6 +17,8 @@ public class App {
         StatusController sc = new StatusController(gameWindow.getStatusPane(), game);
         OceanGridController ogc = new OceanGridController(gameWindow.getOceanPanel(), game.getHumanOceanGrid());
 
+        game.start();
+
         gameWindow.setVisible(true);
         gameWindow.pack();
     }

@@ -63,7 +63,7 @@ public class GridPanel extends JPanel {
         }
     }
 
-    private void drawOccupiedAt(int row, int col, Graphics g) {
+    protected void drawOccupiedAt(int row, int col, Graphics g) {
         // draw whole cell dark grey for ship
 
         // location math
@@ -76,7 +76,7 @@ public class GridPanel extends JPanel {
         g.fillRect(upperLeftX, upperLeftY, width, height);
     }
 
-    private void drawHitAt(int row, int col, Graphics g) {
+    protected void drawHitAt(int row, int col, Graphics g) {
         // draw red circle to represent a peg
 
         // location math
