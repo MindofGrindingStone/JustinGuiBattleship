@@ -9,12 +9,14 @@ public class EasyAIPlayer implements Player {
     public OceanGrid oceanGrid;
     public ShipFactory shipFactory;
     private List<Coordinate> availableShots;
+    private ShotDelegate shotDelegate;
 
-    public EasyAIPlayer(ShipFactory shipFactory) {
+    public EasyAIPlayer(ShipFactory shipFactory, ShotDelegate delegate) {
         this.name = "Easy AI";
         this.oceanGrid = new OceanGrid();
         this.shipFactory = shipFactory;
         this.availableShots = getAvailableShots();
+        this.shotDelegate = delegate;
     }
 
     // Getter for available shots list
@@ -37,7 +39,7 @@ public class EasyAIPlayer implements Player {
 
     public void takeShot() {
         // Select the next available shot
-        // return availableShots.remove(0);
+        shotDelegate.handleShot(availableShots.remove(0), this);
     }
 
 

@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements ShotDelegate {
     private HumanPlayer humanPlayer;
     private Player computerPlayer;
     private Player currentPlayer;
@@ -11,8 +11,8 @@ public class Game {
 
     public Game(){
         // set up players
-        humanPlayer = new HumanPlayer("Human", new AutomaticShipFactory());
-        computerPlayer = new EasyAIPlayer(new AutomaticShipFactory());
+        humanPlayer = new HumanPlayer("Human", new AutomaticShipFactory(), this);
+        computerPlayer = new EasyAIPlayer(new AutomaticShipFactory(), this);
         humanPlayer.placeShips();
         computerPlayer.placeShips();
 

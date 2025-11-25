@@ -1,9 +1,11 @@
 package Model;
 
-public class TargetGrid extends Grid {
+public class TargetGrid extends Grid implements ShotDelegate {
+    private ShotDelegate shotDelegate;
     
-    public TargetGrid(){
+    public TargetGrid(ShotDelegate delegate){
         super();
+        this.shotDelegate = delegate;
     }
 
     public void receiveShotResult(ShotResult result){
@@ -30,5 +32,10 @@ public class TargetGrid extends Grid {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void handleShot(Coordinate shot, Object sender) {
+        shotDelegate.handleShot(shot, this);
     }
 }

@@ -1,14 +1,16 @@
 package Model;
 
-public class HumanPlayer implements Player {
+public class HumanPlayer implements Player, ShotDelegate {
     private String name;
     private OceanGrid oceanGrid = new OceanGrid();
-    private TargetGrid targetGrid = new TargetGrid();
+    private TargetGrid targetGrid = new TargetGrid(this);
     private ShipFactory shipFactory;
+    private ShotDelegate shotDelegate;
 
-    public HumanPlayer(String name, ShipFactory shipFactory){
+    public HumanPlayer(String name, ShipFactory shipFactory, ShotDelegate delegate){
         this.name = name;
         this.shipFactory = shipFactory;
+        this.shotDelegate = delegate;
     }
 
     public void placeShips(){
@@ -42,5 +44,10 @@ public class HumanPlayer implements Player {
     @Override
     public boolean shipsAreSunk() {
         return oceanGrid.shipsAreSunk();
+    }
+
+    @Override
+    public void handleShot(Coordinate shot, Object sender) {
+        shotDelegate.handleShot(shot, this);
     }
 }
