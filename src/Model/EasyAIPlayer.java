@@ -35,9 +35,9 @@ public class EasyAIPlayer implements Player {
         return availableShots;
     }
 
-    public Coordinate takeShot() {
+    public void takeShot() {
         // Select the next available shot
-        return availableShots.remove(0);
+        // return availableShots.remove(0);
     }
 
 
