@@ -1,1 +1,6 @@
 bin
+bin/controller
+bin/model
+bin/view
+bin/util
+bin/App.class
