@@ -25,27 +25,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public Coordinate takeShot() {
-        Coordinate shot = null;
-        // show grids at beginning of turn
-        targetGrid.print();
-        oceanGrid.print();
-        // attempt a shot
-        while(true){
-            String input = ConsoleHelper.getInput("Enter your shot: ");
-            try {
-                shot = new Coordinate(input);   
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            if(targetGrid.isValidShot(shot)){
-                break;
-            } else {
-                System.out.printf("You have already shot at %s%n", input);
-            }
-        }
-        return shot;
+    public void takeShot() {
+        // wait for player to click the target grid
     }
 
     @Override
