@@ -68,5 +68,9 @@ public class GameWindow extends BetterWindow {
     public GridPanel getTargetPanel() {
         return targetPanel;
     }
+
+    public JTextPane getStatusPane() {
+        return statusPanel;
+    }
     
 }

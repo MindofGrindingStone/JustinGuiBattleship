@@ -10,7 +10,7 @@ public class Constants {
         public final static int GRID_SIZE = CELL_SIZE * 10 + 1;
         public final static int STATUS_AREA_HEIGHT = 80;
         public final static int FOOTER_AREA_HEIGHT = 35;
-        public final static int WINDOW_WIDTH = GRID_SIZE;
+        public final static int WINDOW_WIDTH = GRID_SIZE + 14; // also had to add the fudge factor
         public final static int WINDOW_HEIGHT = 2 * GRID_SIZE + STATUS_AREA_HEIGHT + 2 * FOOTER_AREA_HEIGHT;
         public final static int PEG_DIAMETER = 10;
     }

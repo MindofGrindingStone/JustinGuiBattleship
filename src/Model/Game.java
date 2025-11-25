@@ -8,6 +8,7 @@ public class Game implements ShotDelegate {
     private Player computerPlayer;
     private Player currentPlayer;
     private Player otherPlayer;
+    private List<StatusListener> listeners = new ArrayList<StatusListener>();
 
     public Game(){
         // set up players
@@ -21,26 +22,42 @@ public class Game implements ShotDelegate {
         otherPlayer = computerPlayer;
         currentPlayer.takeShot();
     }
+    
+    public void addListener(StatusListener listener){
+        listeners.add(listener);
+    }
+
+    private void notifyStatus(String message){
+        for(StatusListener listener : listeners){
+            listener.statusMessage(message);
+        }
+    }
 
     public TargetGrid getHumanTargetGrid() {
         return humanPlayer.getTargetGrid();
     }
 
+    @SuppressWarnings("incomplete-switch")
     public void handleShot(Coordinate shot, Object sender){
         // must be this player's turn
         if(sender != currentPlayer){
-            // send message
+            notifyStatus("It's not your turn!\n");
             return;
         }
 
         // process the shot
 		ShotResult result = otherPlayer.receiveShot(shot);
 		currentPlayer.receiveShotResult(result);
-            // send message
+        notifyStatus(String.format("%s fires at %s ", currentPlayer.getName(), shot.toString()));
+        switch(result){
+            case HIT -> notifyStatus(String.format(" --> HIT%n"));
+            case MISS -> notifyStatus(String.format(" --> MISS%n"));
+            case SUNK -> notifyStatus(String.format(" --> HIT and SUNK... You sunk my %s%n", result.getShipName()));
+        }
 
         // check for end of game
         if(otherPlayer.shipsAreSunk()){
-            // send message
+            notifyStatus(String.format("GAME OVER: The winner is --> %s%n", currentPlayer.getName()));
             return;
         }
 
