@@ -51,7 +51,7 @@ public class TargetGridController {
             if(model.isValidShot(shot)) {
                 model.handleShot(shot, this);
             } else {
-                System.out.println(String.format("You have already shot at %s%n", shot.getHumanValue()));
+                // invalid shot, do nothing
             }
         }
     }

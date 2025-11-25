@@ -53,6 +53,10 @@ public class Game implements ShotDelegate {
             return;
         }
 
+        if (otherPlayer.shipsAreSunk()) {
+            return;
+        }
+
         // process the shot
         ShotResult result = otherPlayer.receiveShot(shot);
         currentPlayer.receiveShotResult(result);
