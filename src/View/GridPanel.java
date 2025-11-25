@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import Util.Constants;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 public class GridPanel extends JPanel {
@@ -31,6 +32,21 @@ public class GridPanel extends JPanel {
         for (int y = 0; y < height; y += spacing) {
             g.drawLine(0, y, width, y);
         }
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(Constants.Dimensions.GRID_SIZE, Constants.Dimensions.GRID_SIZE);
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(Constants.Dimensions.GRID_SIZE, Constants.Dimensions.GRID_SIZE);
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return new Dimension(Constants.Dimensions.GRID_SIZE, Constants.Dimensions.GRID_SIZE);
     }
 
 }
