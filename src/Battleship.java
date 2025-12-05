@@ -5,8 +5,11 @@ import Controller.WindowController;
 import Model.Game;
 import View.GameWindow;
 
-public class App {
+public class Battleship {
     public static void main(String[] args) throws Exception {
+        // 0. Apple specific properties to set...
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+
         // 1. Build out the view layer...
         GameWindow gameWindow = new GameWindow("Battleship");
 
@@ -14,7 +17,7 @@ public class App {
         Game game = new Game();
 
         // 3. Connect Models and Views with Controllers
-        WindowController wc = new WindowController(gameWindow);
+        WindowController wc = new WindowController(gameWindow, game);
         TargetGridController tgc = new TargetGridController(gameWindow.getTargetPanel(), game.getHumanTargetGrid());
         StatusController sc = new StatusController(gameWindow.getStatusPane(), game);
         OceanGridController ogc = new OceanGridController(gameWindow.getOceanPanel(), game.getHumanOceanGrid());
