@@ -16,7 +16,7 @@ public class Game implements ShotDelegate, Serializable {
     public Game() {
         // set up players
         humanPlayer = new HumanPlayer("Human", new AutomaticShipFactory(), this);
-        computerPlayer = new EasyAIPlayer(new AutomaticShipFactory(), this);
+        computerPlayer = new MediumAIPlayer(this);
 
     }
 
