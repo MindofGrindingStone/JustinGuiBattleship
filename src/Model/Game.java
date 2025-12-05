@@ -35,8 +35,12 @@ public class Game implements ShotDelegate, Serializable {
         currentPlayer.takeShot();
     }
 
-    public void addListener(StatusListener listener) {
-        listeners.add(listener);
+    public void addListener(StatusListener toAdd) {
+        listeners.add(toAdd);
+    }
+
+    public void removeListener(StatusListener toRemove) {
+        listeners.remove(toRemove);
     }
 
     private void notifyStatus(String message) {

@@ -12,24 +12,66 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import View.GameWindow;
 
 public class WindowController {
     private Game game;
+    private TargetGridController tgc;
+    private StatusController sc;
+    private OceanGridController ogc;
 
     public WindowController(GameWindow view, Game game) {
         this.game = game;
-        
+        this.tgc = new TargetGridController(view.getTargetPanel(), game.getHumanTargetGrid());
+        this.sc = new StatusController(view.getStatusPane(), game);
+        this.ogc = new OceanGridController(view.getOceanPanel(), game.getHumanOceanGrid());
+
         // menus
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
         JMenuItem openItem = new JMenuItem("Open");
         openItem.addActionListener(_ -> {
-            
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Open Game");
+
+            int userSelection = fileChooser.showOpenDialog(view);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToOpen = fileChooser.getSelectedFile();
+                System.out.println("Opening file: " + fileToOpen.getAbsolutePath());
+                ObjectInputStream is;
+                Game oldGame = this.game;
+                try {
+                    is = new ObjectInputStream(new FileInputStream(fileToOpen.getAbsolutePath()));
+                    this.game = (Game)is.readObject();
+                    is.close();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+
+                // need to wire up new objects, and unhook old
+                tgc.disconnect();
+                sc.disconnect();
+                ogc.disconnect();
+
+                tgc = null;
+                sc = null;
+                ogc = null;
+
+                this.tgc = new TargetGridController(view.getTargetPanel(), this.game.getHumanTargetGrid());
+                this.sc = new StatusController(view.getStatusPane(), this.game);
+                this.ogc = new OceanGridController(view.getOceanPanel(), this.game.getHumanOceanGrid());
+            }
         });
         openItem.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
         fileMenu.add(openItem);

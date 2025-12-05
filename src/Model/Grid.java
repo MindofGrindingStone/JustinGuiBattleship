@@ -26,8 +26,13 @@ public abstract class Grid implements Serializable {
         return cells[location.getRow()][location.getColumn()];
     }
 
-    public void addListener(GridListener listener){
-        listeners.add(listener);
+    public void addListener(GridListener toAdd){
+        listeners.add(toAdd);
+        notifyListeners();
+    }
+
+    public void removeListener(GridListener toRemove){
+        listeners.remove(toRemove);
     }
 
     protected void notifyListeners(){
