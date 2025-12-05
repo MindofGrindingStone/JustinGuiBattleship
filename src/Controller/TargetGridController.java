@@ -30,6 +30,15 @@ public class TargetGridController {
         model.addListener(modelListener);
     }
 
+    public void disconnect() {
+        model.removeListener(modelListener);
+        modelListener = null;
+        view.removeMouseListener(viewListener);
+        viewListener = null;
+        view = null;
+        model = null;
+    }
+
     private class GridPanelListener extends MouseAdapter {      
         @Override
         public void mouseClicked(MouseEvent e) {

@@ -19,6 +19,13 @@ public class OceanGridController {
         model.addListener(modelListener);
     }
 
+    public void disconnect() {
+        model.removeListener(modelListener);
+        modelListener = null;
+        view = null;
+        model = null;
+    }
+
     private class OceanGridListener implements GridListener {
         @Override
         public void gridChanged(GridRep gridRep) {

@@ -1,11 +1,13 @@
 package Model;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Grid {
+public abstract class Grid implements Serializable {
     protected Cell[][] cells = new Cell[10][10];
-    private List<GridListener> listeners = new ArrayList<GridListener>();
+    private transient List<GridListener> listeners = new ArrayList<GridListener>();
 
     public Grid(){
         for (int i = 0; i < 10; i++){
@@ -15,12 +17,22 @@ public abstract class Grid {
         }
     }
 
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        listeners = new ArrayList<GridListener>();
+    }
+
     protected Cell cellAtLocation(Coordinate location){
         return cells[location.getRow()][location.getColumn()];
     }
 
-    public void addListener(GridListener listener){
-        listeners.add(listener);
+    public void addListener(GridListener toAdd){
+        listeners.add(toAdd);
+        notifyListeners();
+    }
+
+    public void removeListener(GridListener toRemove){
+        listeners.remove(toRemove);
     }
 
     protected void notifyListeners(){
