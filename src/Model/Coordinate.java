@@ -78,10 +78,7 @@ public class Coordinate {
         if(o == null){ return false; }
         if(getClass() != o.getClass()){ return false; }
         Coordinate coord = (Coordinate)o;
-        if(row == coord.getRow() && column == coord.getColumn()){
-            return true;
-        }
-        return false;
+        return row == coord.getRow() && column == coord.getColumn();
     }
 
     @Override
