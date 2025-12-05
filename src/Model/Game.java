@@ -1,20 +1,28 @@
 package Model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game implements ShotDelegate {
+public class Game implements ShotDelegate, Serializable {
     private HumanPlayer humanPlayer;
     private Player computerPlayer;
     private Player currentPlayer;
     private Player otherPlayer;
-    private List<StatusListener> listeners = new ArrayList<StatusListener>();
+    private transient List<StatusListener> listeners = new ArrayList<StatusListener>();
 
     public Game() {
         // set up players
         humanPlayer = new HumanPlayer("Human", new AutomaticShipFactory(), this);
         computerPlayer = new EasyAIPlayer(new AutomaticShipFactory(), this);
 
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        listeners = new ArrayList<StatusListener>();
     }
 
     public void start() {

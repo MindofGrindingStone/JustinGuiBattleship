@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EasyAIPlayer implements Player {
+public class EasyAIPlayer implements Player, Serializable {
     private String name;
     public OceanGrid oceanGrid;
     public ShipFactory shipFactory;

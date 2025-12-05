@@ -7,6 +7,7 @@ import View.GridPanel;
 
 public class OceanGridController {
     private GridPanel view;
+    @SuppressWarnings("unused")
     private OceanGrid model;
     private GridListener modelListener;
 
