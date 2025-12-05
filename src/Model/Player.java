@@ -3,8 +3,8 @@ package Model;
 public interface Player {
     public String getName();
     public void takeShot();
-    public ShotResult receiveShot(Coordinate shot);
-    public void receiveShotResult(ShotResult shotResult);
+    public ShotResultData receiveShot(Coordinate shot);
+    public void receiveShotResult(ShotResultData shotResultData);
     public boolean shipsAreSunk();
     public void placeShips();
 }

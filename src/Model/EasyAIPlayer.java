@@ -43,13 +43,13 @@ public class EasyAIPlayer implements Player {
     }
 
 
-    public void receiveShotResult(ShotResult result){ 
+    public void receiveShotResult(ShotResultData resultData){ 
         // AI does not utilize shot results in easy mode
     }
 
 
 
-    public ShotResult receiveShot(Coordinate coordinate) {
+    public ShotResultData receiveShot(Coordinate coordinate) {
         return oceanGrid.receiveShot(coordinate);
     }
 

@@ -8,10 +8,10 @@ public class TargetGrid extends Grid implements ShotDelegate {
         this.shotDelegate = delegate;
     }
 
-    public void receiveShotResult(ShotResult result){
-        Coordinate location = result.getLocation();
+    public void receiveShotResult(ShotResultData result){
+        Coordinate location = result.location();
         Cell affectedCell = cellAtLocation(location);
-        switch(result){
+        switch(result.result()){
             case MISS:
                 affectedCell.setState(CellState.MISS);
                 break;

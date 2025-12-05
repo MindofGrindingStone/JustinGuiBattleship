@@ -58,13 +58,13 @@ public class Game implements ShotDelegate {
         }
 
         // process the shot
-        ShotResult result = otherPlayer.receiveShot(shot);
+        ShotResultData result = otherPlayer.receiveShot(shot);
         currentPlayer.receiveShotResult(result);
         notifyStatus(String.format("%s fires at %s ", currentPlayer.getName(), shot.toString()));
-        switch (result) {
+        switch (result.result()) {
             case HIT -> notifyStatus(String.format(" --> HIT%n"));
             case MISS -> notifyStatus(String.format(" --> MISS%n"));
-            case SUNK -> notifyStatus(String.format(" --> HIT and SUNK... You sunk my %s%n", result.getShipName()));
+            case SUNK -> notifyStatus(String.format(" --> HIT and SUNK... You sunk my %s%n", result.shipName()));
         }
 
         // check for end of game

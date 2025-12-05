@@ -36,13 +36,13 @@ public class HumanPlayer implements Player, ShotDelegate {
     }
 
     @Override
-    public ShotResult receiveShot(Coordinate shot) {
+    public ShotResultData receiveShot(Coordinate shot) {
         return oceanGrid.receiveShot(shot);
     }
 
     @Override
-    public void receiveShotResult(ShotResult shotResult) {
-        targetGrid.receiveShotResult(shotResult);
+    public void receiveShotResult(ShotResultData shotResultData) {
+        targetGrid.receiveShotResult(shotResultData);
     }
 
     @Override

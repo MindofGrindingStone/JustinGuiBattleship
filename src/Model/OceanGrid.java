@@ -10,16 +10,17 @@ public class OceanGrid extends Grid {
         super();
     }
 
-    public ShotResult receiveShot(Coordinate location){
+    public ShotResultData receiveShot(Coordinate location){
         Cell cell = cellAtLocation(location);
+        ShotResultData shotResultData;
 
         // shot lands on empty cell
         if(cell.getState() == CellState.EMPTY){
             cell.setState(CellState.MISS);
             ShotResult result = ShotResult.MISS;
-            result.setLocation(location);
+            shotResultData = new ShotResultData(result, location, null, 0);
             notifyListeners();
-            return result;
+            return shotResultData;
         }
 
         // shot lands on ship
@@ -28,19 +29,17 @@ public class OceanGrid extends Grid {
             cell.getShip().registerHit(location);
             if(cell.getShip().isSunk()){
                 ShotResult result = ShotResult.SUNK;
-                result.setLength(cell.getShip().getLength());
-                result.setLocation(location);
-                result.setShipName(cell.getShip().getName());
+                shotResultData = new ShotResultData(result, location, cell.getShip().getName(), cell.getShip().getLength());
                 notifyListeners();
-                return result;
+                return shotResultData;
             } else {
                 ShotResult result = ShotResult.HIT;
-                result.setLocation(location);
+                shotResultData = new ShotResultData(result, location, cell.getShip().getName(), cell.getShip().getLength());
                 notifyListeners();
-                return result;
+                return shotResultData;
             }
         }
-        return ShotResult.INVALID;
+        return new ShotResultData(ShotResult.INVALID, location, null, 0);
     }
 
     public void placeShips(List<Ship> ships){
